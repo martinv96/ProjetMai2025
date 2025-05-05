@@ -215,6 +215,23 @@ def delete_post(post_id):
 
 @bp.route('/create-tables')
 def create_tables():
+    # Créer toutes les tables
     from app import db
     db.create_all()
-    return "Tables créées"
+
+    # Vérifier si l'utilisateur admin existe déjà pour éviter les doublons
+    if not User.query.filter_by(email='martinv9663@gmail.com').first():
+        # Créer un utilisateur avec les données spécifiées
+        hashed_password = generate_password_hash('azerty', method='pbkdf2:sha256')
+        admin_user = User(
+            prenom='Martin', 
+            email='martinv9663@gmail.com', 
+            password=hashed_password, 
+            role='admin'  # Attribuer le rôle 'admin'
+        )
+        
+        # Ajouter l'utilisateur à la base de données
+        db.session.add(admin_user)
+        db.session.commit()
+
+    return "Tables créées et utilisateur admin ajouté (si nécessaire)"

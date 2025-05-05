@@ -20,11 +20,11 @@
                 </li>
     
                 <li><a href="{{ url_for('main.contact') }}">Contactez-moi</a></li>
+                <li><a href="{{ url_for('main.feed') }}">Fil d'actualités</a></li>
     
                 {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('main.profile') }}">Mon profil</a></li>
                     <li><a href="{{ url_for('main.partage') }}">Partager</a></li>
-                    <li><a href="{{ url_for('main.feed') }}">Fil d'actualités</a></li>
     
                     {% if current_user.role == 'admin' %}
                         <li><a href="{{ url_for('main.view_messages') }}">Messages reçus</a></li>
@@ -44,7 +44,7 @@
     <main>{% block content %}{% endblock %}</main>
 
     <footer>
-        <p>&copy; 2025 Mon Site</p>
+        <p>&copy; 2025 CodeByMe (Martin Vallée)</p>
     </footer>
 </body>
 
