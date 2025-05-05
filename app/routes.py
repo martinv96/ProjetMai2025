@@ -212,3 +212,9 @@ def delete_post(post_id):
     else:
         flash('Vous n\'êtes pas autorisé à supprimer ce post', 'danger')
     return redirect(url_for('main.feed'))
+
+@bp.route('/create-tables')
+def create_tables():
+    from app import db
+    db.create_all()
+    return "Tables créées"
