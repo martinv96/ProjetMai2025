@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: CodeByMe
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn run:app"
+    envVars:
+      - key: DATABASE_URL
+        value: "postgresql://postgresql_codebyme_user:8kNHfWZVPHa7F5xnz3n0CUIBK1cfHaFS@dpg-d0cj2jmmcj7s73akonog-a.frankfurt-postgres.render.com/postgresql_codebyme"
