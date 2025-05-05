@@ -78,3 +78,47 @@
 .contact-page a:hover {
     text-decoration: underline;
 }
+
+/* ---------------------------
+   Responsive
+---------------------------- */
+
+/* Tablettes (<= 768px) */
+@media (max-width: 768px) {
+    .contact-page form {
+        padding: 30px;
+        max-width: 90%;
+    }
+
+    .contact-page label {
+        font-size: 1rem;
+    }
+
+    .contact-page button {
+        font-size: 16px;
+        padding: 12px 18px;
+    }
+}
+
+/* Téléphones (<= 480px) */
+@media (max-width: 480px) {
+    .contact-page form {
+        padding: 20px;
+    }
+
+    .contact-page input,
+    .contact-page textarea {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .contact-page button {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .contact-page label {
+        font-size: 0.95rem;
+    }
+}

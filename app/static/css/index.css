@@ -93,3 +93,80 @@
     font-size: 0.9rem;
     color: #555;
 }
+
+/* ---------------------------
+   Responsive
+---------------------------- */
+
+/* Tablettes (≤ 768px) */
+@media (max-width: 768px) {
+    .homepage-container {
+        padding: 30px 15px;
+    }
+
+    .homepage-title {
+        font-size: 2rem;
+    }
+
+    .homepage-intro {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-text {
+        font-size: 1rem;
+    }
+
+    .resource-list {
+        margin-left: 20px;
+        font-size: 0.95rem;
+    }
+
+    .testimonial {
+        padding: 15px;
+        font-size: 1rem;
+    }
+}
+
+/* Mobiles (≤ 480px) */
+@media (max-width: 480px) {
+    .homepage-title {
+        font-size: 1.6rem;
+    }
+
+    .homepage-intro {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .section-text {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .resource-list {
+        margin-left: 15px;
+        font-size: 0.9rem;
+    }
+
+    .btn.homepage-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .testimonial {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+
+    .testimonial-footer {
+        font-size: 0.85rem;
+    }
+}

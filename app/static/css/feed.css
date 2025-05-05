@@ -158,3 +158,114 @@ form button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+/* ---------------------------
+   Responsive
+---------------------------- */
+
+/* Tablettes (≤ 768px) */
+@media (max-width: 768px) {
+    .feed-container {
+        padding: 15px;
+    }
+
+    .feed-container h2 {
+        font-size: 26px;
+    }
+
+    .post-container {
+        padding: 15px;
+    }
+
+    .post-header {
+        font-size: 16px;
+    }
+
+    .post-contenu {
+        font-size: 15px;
+    }
+
+    .post-image img,
+    .post-video video {
+        width: 30%;
+        max-height: 250px;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .like-button .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    form button {
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+
+    .delete-comment-button {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}
+
+/* Mobiles (≤ 480px) */
+@media (max-width: 480px) {
+    .feed-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .feed-container h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .post-container {
+        padding: 10px;
+    }
+
+    .post-header {
+        font-size: 15px;
+    }
+
+    .post-contenu {
+        font-size: 14px;
+    }
+
+    .post-image img,
+    .post-video video {
+        width: 30%;
+        max-height: 200px;
+    }
+
+    form textarea {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    form button {
+        width: 100%;
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .delete-comment-button {
+        width: 100%;
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .like-button .icon {
+        width: 22px;
+        height: 22px;
+    }
+}

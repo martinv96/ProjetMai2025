@@ -101,3 +101,58 @@ a {
     display: block;
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    .profile-page form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .profile-page h1 {
+        font-size: 1.5em;
+    }
+
+    .profile-page input[type="text"],
+    .profile-page input[type="email"],
+    .profile-page input[type="password"],
+    .profile-page input[type="file"] {
+        font-size: 0.95em;
+        padding: 10px;
+    }
+
+    .profile-page button[type="submit"],
+    .profile-page .edit-btn {
+        width: 100%;
+        font-size: 0.95em;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-page form {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .profile-page h1 {
+        font-size: 1.3em;
+    }
+
+    .profile-page input[type="text"],
+    .profile-page input[type="email"],
+    .profile-page input[type="password"],
+    .profile-page input[type="file"] {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .profile-page button[type="submit"],
+    .profile-page .edit-btn {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .profile-page img {
+        max-width: 120px;
+    }
+}

@@ -50,3 +50,54 @@
 .message-item button:hover {
     background-color: #b71c1c;
 }
+
+/* Responsive pour tablettes */
+@media (max-width: 768px) {
+    .message-list {
+        padding: 0 15px;
+    }
+
+    .message-item {
+        padding: 18px 20px;
+    }
+
+    .message-item strong {
+        font-size: 1em;
+    }
+
+    .message-item p {
+        font-size: 0.95em;
+    }
+
+    .message-item button {
+        font-size: 0.9em;
+        padding: 7px 12px;
+    }
+}
+
+/* Responsive pour mobiles */
+@media (max-width: 480px) {
+    .message-list {
+        margin: 20px 10px;
+    }
+
+    .message-item {
+        padding: 16px 16px;
+    }
+
+    .message-item strong {
+        font-size: 0.95em;
+    }
+
+    .message-item p {
+        font-size: 0.9em;
+        line-height: 1.4;
+    }
+
+    .message-item button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        margin-top: 8px;
+    }
+}

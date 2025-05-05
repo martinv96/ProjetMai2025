@@ -64,3 +64,51 @@
 .submit-btn:hover {
     background-color: #45a049;
 }
+
+@media (max-width: 768px) {
+    .partage-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .partage-container h2 {
+        font-size: 22px;
+    }
+
+    .form-input,
+    .file-input {
+        font-size: 15px;
+        padding: 8px;
+    }
+
+    .submit-btn {
+        font-size: 15px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .partage-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .partage-container h2 {
+        font-size: 20px;
+    }
+
+    .form-input {
+        min-height: 80px;
+        font-size: 14px;
+    }
+
+    .file-input {
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+}
