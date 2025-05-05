@@ -1,15 +1,24 @@
-.form-page main {
+.page-wrapper {
     max-width: 500px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-.form-page form {
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.form-box {
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
 }
 
-.form-page input {
+.input-field {
     padding: 12px;
     width: 80%;
     max-width: 400px;
@@ -19,12 +28,12 @@
     box-sizing: border-box;
 }
 
-.form-page input:focus {
+.input-field:focus {
     outline: none;
     border-color: #007BFF;
 }
 
-.form-page button {
+.btn-primary {
     background-color: #007BFF;
     color: white;
     border: none;
@@ -37,11 +46,11 @@
     transition: background-color 0.3s ease;
 }
 
-.form-page button:hover {
+.btn-primary:hover {
     background-color: #0056b3;
 }
 
-.form-page a {
+.link-secondary {
     color: #007BFF;
     text-decoration: none;
     font-weight: 600;
@@ -50,6 +59,10 @@
     text-align: center;
 }
 
-.form-page a:hover {
+.link-secondary:hover {
     text-decoration: underline;
+}
+
+.btn-incrire {
+    background-color: #333 !important;
 }

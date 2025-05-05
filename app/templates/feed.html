@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Contenus partagés{% endblock %}
+
+{% block content %}
+    <main class="feed-container">
+        <h2>Contenus partagés</h2>
+
+        {% for post in posts %}
+        <div class="post-container">
+            <div class="post-header">
+                <strong>{{ post.user.pseudo or post.user.prenom }}</strong>
+                {% if post.user.id == current_user.id %}
+                <form method="POST" action="{{ url_for('main.delete_post', post_id=post.id) }}" style="display:inline;">
+                    <button type="submit" class="delete-post-button">
+                        <img src="{{ url_for('static', filename='images/supprimer.png') }}" alt="Supprimer" class="icon">
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+            <p class="post-contenu">{{ post.contenu }}</p>
+        
+            {% if post.image_url %}
+                <div class="post-image">
+                    <img src="{{ url_for('static', filename=post.image_url) }}" alt="Image" class="post-img">
+                </div>
+            {% endif %}
+        
+            {% if post.video_url %}
+                <div class="post-video">
+                    <video width="320" height="240" controls>
+                        <source src="{{ url_for('static', filename=post.video_url) }}" type="video/mp4">
+                    </video>
+                </div>
+            {% endif %}
+        
+            <!-- Affichage des likes -->
+            <form method="POST" action="{{ url_for('main.like', post_id=post.id) }}">
+                <button type="submit" class="like-button">
+                    <img src="{{ url_for('static', filename='images/like.png') }}" alt="Aimer" class="icon">
+                </button>
+            </form>
+        
+            <p>{{ post.likes|length }} Like(s)</p>
+        
+            <!-- Affichage des commentaires -->
+            <form method="POST" action="{{ url_for('main.comment', post_id=post.id) }}">
+                <textarea name="contenu" placeholder="Ajouter un commentaire..." maxlength="300"></textarea>
+                <button type="submit" class="btn-commenter">Commenter</button>
+            </form>
+        
+            <div class="comments-section">
+                {% for comment in post.comments %}
+                    <div class="comment">
+                        <strong>{{ comment.user.pseudo or comment.user.prenom }}</strong>: {{ comment.contenu }}
+                        {% if comment.user.id == current_user.id %}
+                            <form method="POST" action="{{ url_for('main.delete_comment', comment_id=comment.id) }}">
+                                <button type="submit" class="delete-comment-button">
+                                    <img src="{{ url_for('static', filename='images/supprimer.png') }}" alt="Supprimer" class="icon">
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        
+            <hr class="post-divider">
+        </div>
+        {% endfor %}
+    </main>
+{% endblock %}

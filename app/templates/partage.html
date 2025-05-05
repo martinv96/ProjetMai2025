@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Partager un contenu{% endblock %}
+
+{% block content %}
+    <main class="partage-container">
+        <h2>Partager un contenu</h2>
+        <form method="POST" enctype="multipart/form-data" class="partage-form">
+            <textarea name="contenu" maxlength="300" placeholder="Votre message (max 300 caractères)" required class="form-input"></textarea><br>
+            
+            <div class="file-inputs">
+                <label for="image" class="file-label">Choisir une image :</label>
+                <input type="file" name="image" accept="image/*" class="file-input"><br>
+                
+                <label for="video" class="file-label">Choisir une vidéo :</label>
+                <input type="file" name="video" accept="video/*" class="file-input"><br>
+            </div>
+            
+            <button type="submit" class="submit-btn">Partager</button>
+        </form>
+    </main>
+{% endblock %}

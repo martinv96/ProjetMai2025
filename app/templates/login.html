@@ -3,17 +3,16 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block content %}
-    <main>
-        <h1>Se connecter</h1>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+<main class="page-wrapper">
+    <h1 class="page-title">Se connecter</h1>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
 
-        <form method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <button type="submit">Se connecter</button>
-        </form>
+    <form method="POST" class="form-box">
+        <input type="email" name="email" placeholder="Email" required class="input-field">
+        <input type="password" name="password" placeholder="Mot de passe" required class="input-field">
+        <button type="submit" class="btn-incrire">Se connecter</button>
+    </form>
 
-        <br>
-        <a href="{{ url_for('main.register') }}">Pas de compte ? Inscrivez-vous</a>
-    </main>
+    <a href="{{ url_for('main.register') }}" class="link-secondary">Pas de compte ? Inscrivez-vous</a>
+</main>
 {% endblock %}
