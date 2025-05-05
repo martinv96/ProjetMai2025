@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.contact') }}">Contactez-moi</a></li>
+                <li><a href="{{ url_for('main.login') }}">Se connecter</a></li>
+                <li><a href="{{ url_for('main.register') }}">S'inscrire</a></li>
+                <li><a href="{{ url_for('main.view_messages') }}">Messages reçus</a></li>               
+            </ul>          
+        </nav>
+    </header>
+    <img src="{{ url_for('static', filename='images/moi.jpg') }}" alt="Photo de profil">
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Mon Site</p>
+    </footer>
+</body>
+</html>

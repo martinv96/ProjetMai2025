@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Merci{% endblock %}
+
+{% block content %}
+    <main>
+        <h1>Merci {{ prenom }} !</h1>
+        <p>Votre message a bien été envoyé.</p>
+        <a href="{{ url_for('main.home') }}">Retour à l'accueil</a>
+    </main>
+{% endblock %}

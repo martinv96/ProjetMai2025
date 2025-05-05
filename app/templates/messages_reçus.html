@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Messages reçus{% endblock %}
+
+{% block content %}
+<main>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/message.css') }}">
+    <h1>Messages reçus</h1>
+    <ul class="message-list">
+        {% for message in messages %}
+            <li class="message-item">
+                Prénom: <strong>{{ message.prenom }}</strong>, E-mail : ({{ message.email }})<br>
+                <p>Message : {{ message.contenu }}</p>
+                <form action="{{ url_for('main.delete_message', message_id=message.id) }}" method="POST">
+                    <button type="submit" onclick="return confirm('Supprimer ce message ?')">Supprimer</button>
+                </form>
+            </li>
+        {% else %}
+            <li class="message-item">
+                Aucun message.
+            </li>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}

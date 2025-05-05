@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+    <main>
+        <h1>Bienvenue {{ prenom }}</h1>
+        <a href="{{ url_for('main.logout') }}">Se déconnecter</a>
+    </main>
+{% endblock %}
