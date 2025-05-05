@@ -1,0 +1,73 @@
+.profile-page form {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.profile-page input[type="text"],
+.profile-page input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.profile-page input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.profile-page button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.profile-page button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.profile-page .message {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+.profile-page .error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.profile-page img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 20px auto 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}

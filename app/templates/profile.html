@@ -3,8 +3,91 @@
 {% block title %}Profil{% endblock %}
 
 {% block content %}
-    <main>
-        <h1>Bienvenue {{ prenom }}</h1>
-        <a href="{{ url_for('main.logout') }}">Se déconnecter</a>
-    </main>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
+
+<div class="profile-page">
+    {% if message %}
+        <p class="message">{{ message }}</p>
+    {% endif %}
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <h1>Bienvenue {{ user.prenom }}</h1>
+
+    <form method="POST" enctype="multipart/form-data" id="profile-form">
+        <input type="hidden" name="field_modified" id="field_modified" value="" />
+
+        <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input type="text" name="nom" value="{{ user.nom or '' }}" id="nom" disabled />
+            <button type="button" class="edit-btn" onclick="toggleEditAndSubmit('nom')">Modifier</button>
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prénom :</label>
+            <input type="text" name="prenom" value="{{ user.prenom or '' }}" id="prenom" disabled />
+            <button type="button" class="edit-btn" onclick="toggleEditAndSubmit('prenom')">Modifier</button>
+        </div>
+
+        <div class="form-group">
+            <label for="pseudo">Pseudo :</label>
+            <input type="text" name="pseudo" value="{{ user.pseudo or '' }}" id="pseudo" disabled />
+            <button type="button" class="edit-btn" onclick="toggleEditAndSubmit('pseudo')">Modifier</button>
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">Téléphone :</label>
+            <input type="text" name="telephone" value="{{ user.telephone or '' }}" id="telephone" disabled />
+            <button type="button" class="edit-btn" onclick="toggleEditAndSubmit('telephone')">Modifier</button>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" name="email" value="{{ user.email or '' }}" id="email" disabled />
+            <button type="button" class="edit-btn" onclick="toggleEditAndSubmit('email')">Modifier</button>
+        </div>
+
+        <div class="form-group">
+            <label for="photo">Photo de profil :</label>
+            <input type="file" name="photo" onchange="document.getElementById('profile-form').submit()" />
+            {% if user.photo %}
+                <p><strong>Photo actuelle :</strong></p>
+                <img src="{{ url_for('static', filename=user.photo) }}" width="150" />
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="new_password">Nouveau mot de passe :</label>
+            <input type="password" name="new_password" id="new_password" />
+        </div>
+
+        <div class="form-group">
+            <label for="new_password_confirm">Confirmer le mot de passe :</label>
+            <input type="password" name="new_password_confirm" id="new_password_confirm" disabled />
+            <button type="button" class="edit-btn" onclick="toggleEditAndSubmit('new_password_confirm')">Modifier</button>
+        </div>
+    </form>
+
+    <a href="{{ url_for('main.logout') }}">Se déconnecter</a>
+</div>
+
+<script>
+    function toggleEditAndSubmit(fieldId) {
+        var field = document.getElementById(fieldId);
+        var button = document.querySelector(`#${fieldId} + .edit-btn`);
+        var hiddenInput = document.getElementById("field_modified");
+        var form = document.getElementById("profile-form");
+
+        if (field.disabled) {
+            field.disabled = false;
+            button.textContent = "Enregistrer";
+            field.focus();
+        } else {
+            field.disabled = false;
+            hiddenInput.value = fieldId;
+            form.submit();
+        }
+    }
+</script>
 {% endblock %}

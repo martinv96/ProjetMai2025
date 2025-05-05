@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import Config
+from flask_migrate import Migrate
+
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -12,6 +14,8 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
+    migrate = Migrate(app, db)  # ajoute cette ligne
+
     login_manager.init_app(app)
 
     from .models import User  # importer User ici pour le login_manager

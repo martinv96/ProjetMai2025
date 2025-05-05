@@ -1,29 +1,15 @@
-main {
-    flex: 1;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    margin: 20px auto;
+.form-page main {
     max-width: 500px;
-    text-align: center;
 }
 
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-form {
+.form-page form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
 }
 
-input {
+.form-page input {
     padding: 12px;
     width: 80%;
     max-width: 400px;
@@ -33,12 +19,12 @@ input {
     box-sizing: border-box;
 }
 
-input:focus {
+.form-page input:focus {
     outline: none;
     border-color: #007BFF;
 }
 
-button {
+.form-page button {
     background-color: #007BFF;
     color: white;
     border: none;
@@ -49,21 +35,21 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
 }
 
-button:hover {
+.form-page button:hover {
     background-color: #0056b3;
 }
 
-a {
+.form-page a {
     color: #007BFF;
     text-decoration: none;
     font-weight: 600;
     display: block;
     margin-top: 20px;
+    text-align: center;
 }
 
-a:hover {
+.form-page a:hover {
     text-decoration: underline;
 }

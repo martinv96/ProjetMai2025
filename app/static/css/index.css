@@ -1,0 +1,95 @@
+/* index.css */
+
+.homepage-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.homepage-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.homepage-intro {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.homepage-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #010408;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.section-text {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.resource-list {
+    list-style-type: disc;
+    margin-left: 40px;
+    font-size: 1rem;
+}
+
+.resource-list li {
+    margin-bottom: 8px;
+    list-style: none;
+}
+
+.resource-list a {
+    color: #304153;
+    text-decoration: none;
+}
+
+.resource-list a:hover {
+    text-decoration: underline;
+}
+
+.btn.homepage-btn {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn.homepage-btn:hover {
+    background-color: #0056b3;
+}
+
+.testimonial {
+    background-color: #e0f0ff;
+    border-left: 5px solid #007bff;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 600px;
+    font-style: italic;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.testimonial-footer {
+    display: block;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #555;
+}

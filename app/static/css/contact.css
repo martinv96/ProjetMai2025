@@ -1,77 +1,52 @@
-/* Réinitialisation de certains styles pour garantir un design uniforme */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: center; /* Centre verticalement le contenu */
-}
-
-h1 {
-    text-align: center;
-    font-size: 2.5rem; /* Augmentation de la taille du titre */
-    color: #333;
-    margin-bottom: 20px; /* Ajout d'un espace sous le titre */
-}
-
-form {
+.contact-page form {
     background-color: white;
     padding: 40px;
     margin: 0 auto;
-    max-width: 800px; /* Augmentation de la largeur maximale du formulaire */
+    max-width: 800px;
     border-radius: 8px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Ombre plus douce */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    /* gap: 20px; */
-    transition: transform 0.3s ease-in-out; /* Transition douce sur le focus */
+    transition: transform 0.3s ease-in-out;
 }
 
-form:hover {
-    transform: scale(1.02); /* Léger effet au survol du formulaire */
+.contact-page form:hover {
+    transform: scale(1.02);
 }
 
-label {
-    font-size: 1.1rem; /* Augmentation de la taille du texte des labels */
+.contact-page label {
+    font-size: 1.1rem;
     color: #333;
     font-weight: 600;
     text-align: left;
 }
 
-input, textarea {
-    padding: 15px; /* Plus d'espace interne pour un confort visuel */
-    margin-top: -15px; /* Espace entre le label et le champ */
+.contact-page input,
+.contact-page textarea {
+    padding: 15px;
+    margin-top: 15px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Effet de focus plus fluide */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input:focus, textarea:focus {
+.contact-page input:focus,
+.contact-page textarea:focus {
     outline: none;
     border-color: #007BFF;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre bleue au focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-textarea {
+.contact-page textarea {
     resize: vertical;
-    min-height: 150px; /* Taille minimum de la zone de texte */
+    min-height: 150px;
+    margin-bottom: 20px;
 }
 
-button {
+.contact-page button {
     background-color: #007BFF;
     color: white;
     border: none;
@@ -82,16 +57,16 @@ button {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
+.contact-page button:hover {
     background-color: #0056b3;
-    transform: translateY(-2px); /* Effet d'élévation au survol */
+    transform: translateY(-2px);
 }
 
-button:active {
-    transform: translateY(2px); /* Légère descente lors du clic */
+.contact-page button:active {
+    transform: translateY(2px);
 }
 
-a {
+.contact-page a {
     color: #007BFF;
     text-decoration: none;
     text-align: center;
@@ -100,21 +75,6 @@ a {
     display: block;
 }
 
-a:hover {
+.contact-page a:hover {
     text-decoration: underline;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 14px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-footer p {
-    margin: 0;
 }

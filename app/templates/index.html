@@ -3,6 +3,43 @@
 {% block title %}Page d'Accueil{% endblock %}
 
 {% block content %}
-    <h1>Bienvenue sur CodeByMe !</h1>
-    <p>Réalisé avec le framework Flask.</p>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+<div class="homepage-container">
+    <h1 class="homepage-title">Bienvenue sur CodeByMe !</h1>
+    <p class="homepage-intro">Réalisé avec le framework Flask, CodeByMe est une plateforme dédiée aux développeurs passionnés.</p>
+    
+    <section class="homepage-section">
+        <h2 class="section-title">À propos de CodeByMe</h2>
+        <p class="section-text">CodeByMe vous aide à améliorer vos compétences en développement web avec des ressources pratiques et des tutoriels à jour.</p>
+    </section>
+
+    <section class="homepage-section">
+        <h2 class="section-title">Ce qui m'a aidé à développer ce projet personnel</h2>
+        <ul class="resource-list">
+            <li><a href="https://openclassrooms.com/fr/courses/7168871-apprenez-les-bases-du-langage-python">Introduction au développement web avec Python</a></li>
+            <li><a href="https://www.youtube.com/watch?app=desktop&v=sqn4GPiThbc&ab_channel=LeCoinStat">10 Techniques De Pro Pour Progresser En Python Rapidement</a></li>
+        </ul>
+    </section>
+
+    <section class="homepage-section">
+        <h2 class="section-title">Vous souhaitez vous inscrire sur Mon Site ?</h2>
+        <p class="section-text">Inscrivez-vous pour pouvoir créer votre profil et partager du contenu !</p>
+        <a href="{{ url_for('main.register') }}" class="btn homepage-btn">S'inscrire</a>
+    </section>
+
+    <section class="homepage-section">
+        <h2 class="section-title">Témoignages</h2>
+        <blockquote class="testimonial">
+            "CodeByMe m'a aidé à améliorer mes compétences en Flask en quelques semaines !"
+            <footer class="testimonial-footer">- Jean Dupont, Développeur</footer>
+        </blockquote>
+    </section>
+
+    <section class="homepage-section">
+        <h2 class="section-title">Contactez-nous</h2>
+        <p class="section-text">Vous avez une question ou une suggestion ? N'hésitez pas à nous contacter !</p>
+        <a href="{{ url_for('main.contact') }}" class="btn homepage-btn">Contactez-nous</a>
+    </section>
+</div>
 {% endblock %}

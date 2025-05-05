@@ -1,9 +1,15 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, current_app
 from flask_login import login_user, login_required, logout_user, current_user
 from app.models import User, Message, db
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+import os
 
 bp = Blueprint('main', __name__)
+
+# Fonction utilitaire
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'gif'}
 
 @bp.route('/')
 def home():
@@ -42,26 +48,56 @@ def register():
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    # Vérifie si l'utilisateur est déjà connecté
     if current_user.is_authenticated:
-        return redirect(url_for('main.profile'))  # Rediriger vers la page de profil si l'utilisateur est déjà connecté
+        return redirect(url_for('main.profile'))
 
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
 
-        # Vérifie si l'utilisateur existe et si le mot de passe est correct
         user = User.query.filter_by(email=email).first()
         if user and check_password_hash(user.password, password):
-            login_user(user)  # Connexion de l'utilisateur
-            return redirect(url_for('main.profile'))  # Rediriger vers la page de profil après la connexion
+            login_user(user)
+            return redirect(url_for('main.profile'))
 
-    return render_template("login.html")  # Affiche le formulaire de connexion si la méthode est GET ou si les informations sont invalides
+    return render_template("login.html")
 
-@bp.route('/profile')
+@bp.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    return render_template("profile.html", prenom=current_user.prenom)
+    if request.method == 'POST':
+        field_modified = request.form.get('field_modified')
+
+        if field_modified == 'nom':
+            current_user.nom = request.form.get('nom')
+        elif field_modified == 'prenom':
+            current_user.prenom = request.form.get('prenom')
+        elif field_modified == 'pseudo':
+            current_user.pseudo = request.form.get('pseudo')
+        elif field_modified == 'telephone':
+            current_user.telephone = request.form.get('telephone')
+        elif field_modified == 'email':
+            current_user.email = request.form.get('email')
+        elif field_modified == 'new_password':
+            new_password = request.form.get('new_password')
+            confirm_password = request.form.get('new_password_confirm')
+            if new_password and new_password == confirm_password:
+                hashed_password = generate_password_hash(new_password, method='sha256')
+                current_user.password = hashed_password
+
+        # Photo de profil
+        file = request.files.get('photo')
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            current_user.photo = f'uploads/{filename}'
+
+        db.session.commit()
+        return redirect(url_for('main.profile'))
+
+    return render_template("profile.html", user=current_user)
+
 
 @bp.route('/logout')
 @login_required
@@ -70,7 +106,7 @@ def logout():
     return redirect(url_for('main.login'))
 
 @bp.route('/messages')
-@login_required  # Optionnel, selon si tu veux que seuls les utilisateurs connectés y accèdent
+@login_required
 def view_messages():
     messages = Message.query.all()
     return render_template("messages_reçus.html", messages=messages)
