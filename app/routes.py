@@ -3,13 +3,16 @@ from flask_login import login_user, login_required, logout_user, current_user
 from app.models import User, Message, Post, db, Like, Comment
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+import cloudinary.uploader
 import os
 
 bp = Blueprint('main', __name__)
 
 # Fonction utilitaire
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'gif'}
+    allowed_extensions = {'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mov', 'avi', 'webm'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
 
 @bp.route('/')
 def home():
@@ -136,21 +139,36 @@ def partage():
         image_url = None
         video_url = None
 
+        # Upload image (si présente)
         if image and allowed_file(image.filename):
-            filename = secure_filename(image.filename)
-            path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
-            image.save(path)
-            image_url = f'uploads/{filename}'
+            try:
+                result = cloudinary.uploader.upload(
+                    image,
+                    resource_type="image"
+                )
+                image_url = result.get("secure_url")
+            except Exception as e:
+                flash(f"Erreur lors de l'envoi de l'image : {str(e)}", "danger")
+                return redirect(url_for('main.partage'))
 
+        # Upload vidéo (si présente)
         if video and allowed_file(video.filename):
-            filename = secure_filename(video.filename)
-            path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
-            video.save(path)
-            video_url = f'uploads/{filename}'
+            try:
+                result = cloudinary.uploader.upload_large(
+                    video,
+                    resource_type="video"
+                )
+                video_url = result.get("secure_url")
+            except Exception as e:
+                flash(f"Erreur lors de l'envoi de la vidéo : {str(e)}", "danger")
+                return redirect(url_for('main.partage'))
 
+        # Création du post
         new_post = Post(contenu=contenu, image_url=image_url, video_url=video_url, user_id=current_user.id)
         db.session.add(new_post)
         db.session.commit()
+
+        flash("Post publié avec succès !", "success")
         return redirect(url_for('main.feed'))
 
     return render_template("partage.html")

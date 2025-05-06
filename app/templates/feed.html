@@ -22,14 +22,14 @@
         
             {% if post.image_url %}
                 <div class="post-image">
-                    <img src="{{ url_for('static', filename=post.image_url) }}" alt="Image" class="post-img">
+                    <img src="{{ post.image_url }}" alt="Image" class="post-img">
                 </div>
             {% endif %}
         
             {% if post.video_url %}
                 <div class="post-video">
-                    <video width="320" height="240" controls>
-                        <source src="{{ url_for('static', filename=post.video_url) }}" type="video/mp4">
+                    <video controls>
+                        <source src="{{ post.video_url }}" type="video/mp4">
                     </video>
                 </div>
             {% endif %}
