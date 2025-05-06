@@ -82,6 +82,42 @@ ul {
     padding: 0;
 }
 
+/* Flash messages styles */
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.flash.success {
+    background-color: #28a745;
+    color: white;
+    border: 1px solid #218838;
+}
+
+.flash.danger {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #c82333;
+}
+
+.flash.warning {
+    background-color: #ffc107;
+    color: black;
+    border: 1px solid #e0a800;
+}
+
+.flash.info {
+    background-color: #17a2b8;
+    color: white;
+    border: 1px solid #138496;
+}
+
 /* Footer */
 footer {
     background-color: #333;

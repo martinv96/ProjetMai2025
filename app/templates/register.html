@@ -7,6 +7,17 @@
     <h1 class="page-title">S'inscrire</h1>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
 
+    {# Affichage des messages flash #}
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <form method="POST" class="form-box">
         <input type="text" name="prenom" placeholder="Prénom" required class="input-field">
         <input type="email" name="email" placeholder="Email" required class="input-field">

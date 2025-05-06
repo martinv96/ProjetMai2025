@@ -6,6 +6,17 @@
     <main class="feed-container">
         <h2>Contenus partagés</h2>
 
+        {# Affichage des messages flash #}
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
         {% for post in posts %}
         <div class="post-container">
             <div class="post-header">

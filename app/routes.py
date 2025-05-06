@@ -4,6 +4,7 @@ from app.models import User, Message, Post, db, Like, Comment
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import cloudinary.uploader
+from io import BytesIO
 import os
 
 bp = Blueprint('main', __name__)
@@ -41,14 +42,15 @@ def register():
         password = request.form.get('password')
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
-
         new_user = User(prenom=prenom, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
+        flash("Inscription réussie ! Vous pouvez maintenant vous connecter.", "success")
         return redirect(url_for('main.login'))
 
     return render_template("register.html")
+
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -62,9 +64,13 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user and check_password_hash(user.password, password):
             login_user(user)
+            flash("Connexion réussie !", "success")
             return redirect(url_for('main.profile'))
+        else:
+            flash("Identifiants incorrects. Veuillez réessayer.", "danger")
 
     return render_template("login.html")
+
 
 @bp.route('/profile', methods=['GET', 'POST'])
 @login_required
@@ -88,6 +94,8 @@ def profile():
             if new_password and new_password == confirm_password:
                 hashed_password = generate_password_hash(new_password, method='sha256')
                 current_user.password = hashed_password
+            else:
+                flash("Les mots de passe ne correspondent pas.", "danger")
 
         # Photo de profil
         file = request.files.get('photo')
@@ -98,15 +106,18 @@ def profile():
             current_user.photo = f'uploads/{filename}'
 
         db.session.commit()
+        flash("Profil mis à jour avec succès !", "success")
         return redirect(url_for('main.profile'))
 
     return render_template("profile.html", user=current_user)
+
 
 
 @bp.route('/logout')
 @login_required
 def logout():
     logout_user()
+    flash("Vous avez été déconnecté avec succès.", "success")
     return redirect(url_for('main.login'))
 
 @bp.route('/messages')
@@ -154,8 +165,10 @@ def partage():
         # Upload vidéo (si présente)
         if video and allowed_file(video.filename):
             try:
+                # Ouvrir le fichier vidéo en mode binaire
+                video_bytes = BytesIO(video.read())  # Lecture du fichier comme bytes
                 result = cloudinary.uploader.upload_large(
-                    video,
+                    video_bytes,
                     resource_type="video"
                 )
                 video_url = result.get("secure_url")
@@ -172,6 +185,7 @@ def partage():
         return redirect(url_for('main.feed'))
 
     return render_template("partage.html")
+
 
 @bp.route('/feed')
 def feed():
